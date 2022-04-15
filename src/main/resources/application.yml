@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: imdb-searcher
+  datasource:
+    url: jdbc:postgresql://localhost:5432/imdb
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+logging.level:
+  ROOT: INFO
+  org.springframework: DEBUG
+  org.springframework.batch: INFO
+  org.springframework.batch.item.database.JdbcBatchItemWriter: INFO
+  org.springframework.batch.repeat.support.RepeatTemplate: WARN
+  org.springframework.boot.autoconfigure.logging: INFO
+  org.springframework.jdbc: INFO
+  org.springframework.orm: INFO
+  com.unrec.imdb.search: DEBUG
