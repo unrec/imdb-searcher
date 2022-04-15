@@ -1,0 +1,23 @@
+type Query {
+    movie(id: ID!): Basic
+    rating(id: ID!): Rating
+}
+
+type Basic {
+    titleId: ID!
+    titleType: String
+    primaryTitle: String
+    originalTitle: String
+    isAdult: Boolean!
+    startYear: Int
+    endYear: Int
+    runtimeMinutes: Int
+    genres: String!
+    rating: Rating
+}
+
+type Rating {
+    titleId: ID!
+    averageRating: Float!
+    numVotes: Int!
+}
