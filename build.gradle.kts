@@ -5,11 +5,22 @@ group = "com.unrec"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 plugins {
-    kotlin("jvm") version "1.5.20"
-    kotlin("plugin.spring") version "1.5.20"
-    kotlin("plugin.jpa") version "1.5.20"
+    val kotlinVersion = "1.5.20"
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
+    kotlin("plugin.noarg") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
     id("org.springframework.boot") version "2.5.2"
     id("io.freefair.lombok") version "6.4.2"
+}
+
+allOpen {
+    annotations(
+        "javax.persistence.Entity",
+        "javax.persistence.MappedSuperclass",
+        "javax.persistence.Embedabble"
+    )
 }
 
 dependencies {
@@ -44,6 +55,12 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+}
+
+noArg {
+
 }
 
 repositories {
@@ -53,6 +70,7 @@ repositories {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
