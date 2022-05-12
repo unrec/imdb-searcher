@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 @Component
 class BasicResolver(private val ratingRepository: RatingRepository) : GraphQLResolver<Basic> {
 
-    fun rating(basic: Basic): Rating {
-        return ratingRepository.getById(basic.titleId)
+    fun rating(basic: Basic): Rating? {
+        return ratingRepository.findById(basic.titleId).get()
     }
 }

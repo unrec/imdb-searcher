@@ -19,7 +19,7 @@ class AkaRepositoryTest(@Autowired val repository: AkaRepository) {
         val actual = testAkaEntity()
         repository.save(actual)
 
-        val expected = repository.getById(AkaId(actual.titleId, actual.ordering))
+        val expected = repository.findById(AkaId(actual.titleId, actual.ordering)).get()
         assertThat(expected, Matchers.samePropertyValuesAs(actual))
     }
 }
