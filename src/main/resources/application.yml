@@ -19,4 +19,5 @@ logging.level:
   org.springframework.boot.autoconfigure.logging: INFO
   org.springframework.jdbc: INFO
   org.springframework.orm: INFO
+  Exposed: DEBUG
   com.unrec.imdb.search: DEBUG

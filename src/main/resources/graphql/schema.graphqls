@@ -1,5 +1,5 @@
 type Query {
-    movie(id: ID!): Basic
+    movie(titleId: ID!): Basic
     rating(id: ID!): Rating
 }
 

@@ -1,29 +1,7 @@
 package com.unrec.imdb.searcher.model
 
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
-
-@Entity
-@Table(name = "ratings")
-class Rating(
-    @Id
+data class Rating(
     val titleId: Int,
-    val averageRating: Double,
+    val averageRating: Float,
     val numVotes: Int,
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Rating
-
-        if (titleId != other.titleId) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return titleId.hashCode()
-    }
-}
+)
