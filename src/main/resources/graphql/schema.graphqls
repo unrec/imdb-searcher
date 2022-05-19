@@ -1,6 +1,7 @@
 type Query {
     movie(titleId: ID!): Basic
     rating(id: ID!): Rating
+    person(name: String!, profession: String): [Person]
 }
 
 type Basic {
@@ -20,4 +21,13 @@ type Rating {
     titleId: ID!
     averageRating: Float!
     numVotes: Int!
+}
+
+type Person {
+    nameId: ID!
+    primaryName: String
+    birthYear: Int
+    deathYear: Int
+    primaryProfession: String
+    knownForTitles: [Basic]
 }
