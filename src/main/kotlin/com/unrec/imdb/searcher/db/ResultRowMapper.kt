@@ -2,7 +2,9 @@ package com.unrec.imdb.searcher.db
 
 import com.unrec.imdb.searcher.model.Basic
 import com.unrec.imdb.searcher.model.Person
+import com.unrec.imdb.searcher.model.Principal
 import com.unrec.imdb.searcher.model.Rating
+import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ResultRow
 
 fun ResultRow.toBasic() = Basic(
@@ -31,3 +33,20 @@ fun ResultRow.toPerson() = Person(
     primaryProfession = this[NameBasicsTable.primaryProfession],
     knownForTitles = this[NameBasicsTable.knownForTitles]
 )
+
+fun ResultRow.toPrincipal() = Principal(
+    titleId = this[PrincipalsTable.titleId],
+    ordering = this[PrincipalsTable.ordering],
+    nameId = this[PrincipalsTable.nameId],
+    category = this[PrincipalsTable.category],
+    job = this[PrincipalsTable.job],
+    characters = extractCharacters(this, PrincipalsTable.characters)
+)
+
+private fun extractCharacters(resultRow: ResultRow, column: Column<String?>): List<String>? {
+    return resultRow[column]?.removeTrailingSymbols()?.split(",")?.map {
+        it.removeTrailingSymbols()
+    }
+}
+
+fun String.removeTrailingSymbols() = this.substring(1, this.length - 1)

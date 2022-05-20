@@ -15,6 +15,7 @@ type Basic {
     runtimeMinutes: Int
     genres: String!
     rating: Rating
+    principals: [Principal]
 }
 
 type Rating {
@@ -30,4 +31,11 @@ type Person {
     deathYear: Int
     primaryProfession: String
     knownForTitles: [Basic]
+}
+
+type Principal {
+    person: Person
+    category: String
+    job: String
+    characters: [String]
 }

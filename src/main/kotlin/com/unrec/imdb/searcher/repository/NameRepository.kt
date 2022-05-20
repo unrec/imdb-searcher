@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository
 @Repository
 class NameRepository {
 
+    fun findById(id: Int) = transaction {
+        NameBasicsTable.select { NameBasicsTable.nameId eq id }.firstOrNull()?.toPerson()
+    }
+
     fun findPerson(name: String) = transaction {
         NameBasicsTable.select { NameBasicsTable.primaryName eq name }.firstOrNull()?.toPerson()
     }
