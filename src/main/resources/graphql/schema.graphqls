@@ -16,6 +16,8 @@ type Basic {
     genres: String!
     rating: Rating
     principals: [Principal]
+    directors: [Person]
+    writers: [Person]
 }
 
 type Rating {

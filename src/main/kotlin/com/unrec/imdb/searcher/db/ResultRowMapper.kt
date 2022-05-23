@@ -49,4 +49,4 @@ private fun extractCharacters(resultRow: ResultRow, column: Column<String?>): Li
     }
 }
 
-fun String.removeTrailingSymbols() = this.substring(1, this.length - 1)
+private fun String.removeTrailingSymbols() = this.substring(1, this.length - 1)
