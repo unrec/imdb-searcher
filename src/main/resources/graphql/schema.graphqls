@@ -1,0 +1,43 @@
+type Query {
+    movie(titleId: ID!): Basic
+    rating(id: ID!): Rating
+    person(name: String!, profession: String): [Person]
+}
+
+type Basic {
+    titleId: ID!
+    titleType: String
+    primaryTitle: String
+    originalTitle: String
+    isAdult: Boolean!
+    startYear: Int
+    endYear: Int
+    runtimeMinutes: Int
+    genres: String!
+    rating: Rating
+    principals: [Principal]
+    directors: [Person]
+    writers: [Person]
+}
+
+type Rating {
+    titleId: ID!
+    averageRating: Float!
+    numVotes: Int!
+}
+
+type Person {
+    nameId: ID!
+    primaryName: String
+    birthYear: Int
+    deathYear: Int
+    primaryProfession: String
+    knownForTitles: [Basic]
+}
+
+type Principal {
+    person: Person
+    category: String
+    job: String
+    characters: [String]
+}

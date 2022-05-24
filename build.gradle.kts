@@ -8,19 +8,8 @@ plugins {
     val kotlinVersion = "1.5.20"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
-    kotlin("plugin.jpa") version kotlinVersion
-    kotlin("plugin.noarg") version kotlinVersion
-    kotlin("plugin.allopen") version kotlinVersion
     id("org.springframework.boot") version "2.5.2"
     id("io.freefair.lombok") version "6.4.2"
-}
-
-allOpen {
-    annotations(
-        "javax.persistence.Entity",
-        "javax.persistence.MappedSuperclass",
-        "javax.persistence.Embedabble"
-    )
 }
 
 dependencies {
@@ -34,10 +23,10 @@ dependencies {
     implementation(platform("org.springframework.boot:spring-boot-dependencies:2.5.2"))
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     // database
     implementation("org.postgresql:postgresql")
+    implementation("org.jetbrains.exposed:exposed-spring-boot-starter:0.38.2")
 
     // graphql
     implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:11.1.0")
@@ -57,10 +46,6 @@ dependencies {
     }
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-}
-
-noArg {
-
 }
 
 repositories {
