@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class PrincipalsRepository {
 
-    fun findPrincipalsByTitleId(titleId: Int) = transaction {
+    fun findById(titleId: Int) = transaction {
         PrincipalsTable.select { PrincipalsTable.titleId eq titleId }.map { it.toPrincipal() }
     }
 }

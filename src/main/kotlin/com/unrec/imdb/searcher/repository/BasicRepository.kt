@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class BasicRepository {
 
-    fun findMovieById(id: Int) = transaction {
+    fun findById(id: Int) = transaction {
         BasicTable.select { BasicTable.titleId eq id }.firstOrNull()?.toBasic()
     }
 
