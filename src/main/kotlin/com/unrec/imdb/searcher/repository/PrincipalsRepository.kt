@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository
 class PrincipalsRepository {
 
     fun findPrincipalsByTitleId(titleId: Int) = transaction {
-            PrincipalsTable.select { PrincipalsTable.titleId eq titleId }.map { it.toPrincipal() }
-
+        PrincipalsTable.select { PrincipalsTable.titleId eq titleId }.map { it.toPrincipal() }
     }
 }

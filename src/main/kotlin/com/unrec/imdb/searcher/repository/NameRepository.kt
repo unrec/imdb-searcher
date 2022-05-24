@@ -3,8 +3,9 @@ package com.unrec.imdb.searcher.repository
 import com.unrec.imdb.searcher.db.NameBasicsTable
 import com.unrec.imdb.searcher.db.toPerson
 import com.unrec.imdb.searcher.model.Person
-import org.jetbrains.exposed.sql.and
+import org.jetbrains.exposed.sql.andWhere
 import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Repository
 
@@ -24,12 +25,9 @@ class NameRepository {
     }
 
     fun findPerson(name: String, profession: String?) = transaction {
-        when (profession) {
-            null -> NameBasicsTable.select { NameBasicsTable.primaryName eq name }
-            else -> NameBasicsTable.select {
-                (NameBasicsTable.primaryName eq name) and
-                        (NameBasicsTable.primaryProfession.like("%$profession%"))
-            }
-        }.map { it.toPerson() }
+        val query = NameBasicsTable.selectAll()
+        query.andWhere { NameBasicsTable.primaryName eq name }
+        profession?.let { query.andWhere { (NameBasicsTable.primaryProfession.like("%$profession%")) } }
+        query.map { it.toPerson() }
     }
 }

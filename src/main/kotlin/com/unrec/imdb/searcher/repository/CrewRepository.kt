@@ -10,12 +10,8 @@ import org.springframework.stereotype.Repository
 class CrewRepository {
 
     fun findCrewByTitleId(titleId: Int, column: Column<String>): List<Int>? = transaction {
-        CrewTable
-            .slice(column)
+        CrewTable.slice(column)
             .select { CrewTable.titleId eq titleId }
             .map { it[column] }.firstOrNull()?.toIntList()
     }
-
-    private fun String.toIntList() = this.split(",").map { it.toInt() }
-
 }

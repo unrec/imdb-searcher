@@ -15,7 +15,7 @@ class BasicRepository {
     }
 
     fun findMovies(ids: String?): List<Basic>? = transaction {
-        val idList = ids?.split(",")?.map { it.toInt() }
+        val idList = ids?.toIntList()
         return@transaction if (idList.isNullOrEmpty()) emptyList()
         else BasicTable.select { BasicTable.titleId inList idList }.map { it.toBasic() }
     }
