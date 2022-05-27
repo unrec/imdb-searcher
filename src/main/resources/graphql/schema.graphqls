@@ -1,7 +1,21 @@
 type Query {
+    movieSearch(name: String, director: String, writer: String, genre: String, minRating: Float, minVotes: Int, limit: Int): [Movie]
     movie(titleId: ID!): Basic
-    rating(id: ID!): Rating
+    rating(titleId: ID!): Rating
     person(name: String!, profession: String): [Person]
+}
+
+type Movie {
+    id: ID!,
+    type: String!,
+    title: String!,
+    year: Int,
+    runtime: Int,
+    directors: String,
+    writers: String,
+    genres: String,
+    rating: Float,
+    votes: Int
 }
 
 type Basic {

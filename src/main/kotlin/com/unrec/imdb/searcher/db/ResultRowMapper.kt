@@ -1,9 +1,6 @@
 package com.unrec.imdb.searcher.db
 
-import com.unrec.imdb.searcher.model.Basic
-import com.unrec.imdb.searcher.model.Person
-import com.unrec.imdb.searcher.model.Principal
-import com.unrec.imdb.searcher.model.Rating
+import com.unrec.imdb.searcher.model.*
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ResultRow
 
@@ -18,6 +15,19 @@ fun ResultRow.toBasic() = Basic(
     runtimeMinutes = this[BasicTable.runtimeMinutes],
     genres = this[BasicTable.genres]
 )
+
+fun ResultRow.toMovie() = Movie(
+    id = this[MovieView.id],
+    type = this[MovieView.type],
+    title = this[MovieView.title],
+    year = this[MovieView.year],
+    runtime = this[MovieView.runtime],
+    directors = this[MovieView.directors],
+    writers = this[MovieView.writers],
+    genres = this[MovieView.genres],
+    rating = this[MovieView.rating],
+    votes = this[MovieView.votes],
+    )
 
 fun ResultRow.toRating() = Rating(
     titleId = this[RatingTable.titleId],

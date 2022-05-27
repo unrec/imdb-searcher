@@ -12,6 +12,7 @@ class DatabaseService(
     private val nameRepository: NameRepository,
     private val principalsRepository: PrincipalsRepository,
     private val ratingRepository: RatingRepository,
+    private val movieViewRepository: MovieViewRepository,
 ) {
     fun findMovieByTitleId(id: Int) = basicRepository.findById(id)
 
@@ -29,4 +30,7 @@ class DatabaseService(
 
     fun findPersonByNameAndProfession(name: String, profession: String?) =
         nameRepository.findPerson(name, profession)
+
+    fun findMoviesByParams(params: MovieSearchParams) = movieViewRepository.findByParams(params)
+
 }
