@@ -1,6 +1,7 @@
 package com.unrec.imdb.searcher.resolver
 
 import com.unrec.imdb.searcher.model.Basic
+import com.unrec.imdb.searcher.model.Episode
 import com.unrec.imdb.searcher.model.Movie
 import com.unrec.imdb.searcher.model.Rating
 import com.unrec.imdb.searcher.repository.DatabaseService
@@ -25,6 +26,7 @@ class SchemaQueryResolver(private val databaseService: DatabaseService) : GraphQ
         return databaseService.findMoviesByParams(params)
     }
 
+    fun episode(id: Int): Episode? = databaseService.findEpisodeByTitleId(id)
     fun rating(id: Int): Rating? = databaseService.findRatingByTitleId(id)
     fun person(name: String, profession: String?) =
         databaseService.findPersonByNameAndProfession(name, profession)

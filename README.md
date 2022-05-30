@@ -26,7 +26,7 @@ Basically you can search movies by some basic parameters, as well search a **mov
 ```
 
 **Response**
-```graphql
+```yaml
 {
   "data": {
     "movieSearch": [
@@ -81,7 +81,7 @@ Basically you can search movies by some basic parameters, as well search a **mov
 ```
 
 **Response**
-```graphql
+```yaml
 {
   "data": {
     "movie": {
@@ -93,6 +93,95 @@ Basically you can search movies by some basic parameters, as well search a **mov
       "rating": {
         "numVotes": 1946783,
         "averageRating": 8.9
+      }
+    }
+  }
+}
+```
+
+**Episode by titleId request**
+```graphql
+{
+    episode(titleId: 3866850){
+        parent {
+            primaryTitle
+            startYear
+            endYear
+        }
+        season
+        episode
+        data {
+            primaryTitle
+            directors {
+                primaryName
+                birthYear
+                knownForTitles {
+                    primaryTitle
+                    titleType
+                    startYear
+                    rating {
+                        averageRating
+                    }
+                }
+            }
+        }
+    }
+}
+```
+**Response**
+```yaml
+{
+  "data": {
+    "episode": {
+      "parent": {
+        "primaryTitle": "Game of Thrones",
+        "startYear": 2011,
+        "endYear": 2019
+      },
+      "season": 5,
+      "episode": 8,
+      "data": {
+        "primaryTitle": "Hardhome",
+        "directors": [
+          {
+            "primaryName": "Miguel Sapochnik",
+            "birthYear": 1974,
+            "knownForTitles": [
+              {
+                "primaryTitle": "A Life Less Ordinary",
+                "titleType": "movie",
+                "startYear": 1997,
+                "rating": {
+                  "averageRating": 6.4
+                }
+              },
+              {
+                "primaryTitle": "Game of Thrones",
+                "titleType": "tvSeries",
+                "startYear": 2011,
+                "rating": {
+                  "averageRating": 9.2
+                }
+              },
+              {
+                "primaryTitle": "Repo Men",
+                "titleType": "movie",
+                "startYear": 2010,
+                "rating": {
+                  "averageRating": 6.3
+                }
+              },
+              {
+                "primaryTitle": "Finch",
+                "titleType": "movie",
+                "startYear": 2021,
+                "rating": {
+                  "averageRating": 6.9
+                }
+              }
+            ]
+          }
+        ]
       }
     }
   }

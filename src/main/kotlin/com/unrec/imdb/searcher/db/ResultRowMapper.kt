@@ -29,6 +29,13 @@ fun ResultRow.toMovie() = Movie(
     votes = this[MovieView.votes],
     )
 
+ fun ResultRow.toEpisode() = Episode(
+     titleId = this[EpisodeTable.titleId],
+     parentId = this[EpisodeTable.parentId],
+     season = this[EpisodeTable.season],
+     episode = this[EpisodeTable.episode]
+ )
+
 fun ResultRow.toRating() = Rating(
     titleId = this[RatingTable.titleId],
     averageRating = this[RatingTable.averageRating],
