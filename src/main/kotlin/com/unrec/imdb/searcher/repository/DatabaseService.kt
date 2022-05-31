@@ -18,7 +18,18 @@ class DatabaseService(
 ) {
     fun findMovieByTitleId(id: Int) = basicRepository.findById(id)
 
+    fun findSeriesByTitleId(id: Int) = basicRepository.findSeriesById(id)
+
     fun findEpisodeByTitleId(id: Int) = episodeRepository.findById(id)
+
+    fun countEpisodesForSeries(titleId: Int) = episodeRepository.countEpisodesForParentId(titleId)
+
+    fun countSeasonsForSeries(titleId: Int) = episodeRepository.countSeasonsForParentId(titleId)
+
+    fun countTotalRuntimeForSeries(titleId: Int): Int {
+        val episodesIds = episodeRepository.findEpisodesIdByParentId(titleId)
+        return basicRepository.countTotalRuntimeForIds(episodesIds)
+    }
 
     fun findSeriesByEpisode(episode: Episode) = basicRepository.findById(episode.parentId)
 

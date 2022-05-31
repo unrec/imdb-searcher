@@ -98,6 +98,48 @@ Basically you can search movies by some basic parameters, as well search a **mov
   }
 }
 ```
+**TV Series by titleId**
+```graphql
+{
+    tvSeries(titleId: 944947){
+        data {
+            primaryTitle
+            startYear
+            endYear
+            genres
+            rating {
+                averageRating
+                numVotes
+            }
+        }
+        totalSeasons
+        totalEpisodes
+        totalRuntime
+    }
+}
+```
+**Response**
+```yaml
+{
+  "data": {
+    "tvSeries": {
+      "data": {
+        "primaryTitle": "Game of Thrones",
+        "startYear": 2011,
+        "endYear": 2019,
+        "genres": "Action,Adventure,Drama",
+        "rating": {
+          "averageRating": 9.2,
+          "numVotes": 1932926
+        }
+      },
+      "totalSeasons": 8,
+      "totalEpisodes": 73,
+      "totalRuntime": 4214
+    }
+  }
+}
+```
 
 **Episode by titleId request**
 ```graphql

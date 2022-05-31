@@ -1,9 +1,6 @@
 package com.unrec.imdb.searcher.resolver
 
-import com.unrec.imdb.searcher.model.Basic
-import com.unrec.imdb.searcher.model.Episode
-import com.unrec.imdb.searcher.model.Movie
-import com.unrec.imdb.searcher.model.Rating
+import com.unrec.imdb.searcher.model.*
 import com.unrec.imdb.searcher.repository.DatabaseService
 import com.unrec.imdb.searcher.repository.MovieSearchParams
 import graphql.kickstart.tools.GraphQLQueryResolver
@@ -25,6 +22,8 @@ class SchemaQueryResolver(private val databaseService: DatabaseService) : GraphQ
         val params = MovieSearchParams(name, director, writer, genre, minRating, minVotes, limit)
         return databaseService.findMoviesByParams(params)
     }
+
+    fun tvSeries(id: Int): Series? = databaseService.findSeriesByTitleId(id)
 
     fun episode(id: Int): Episode? = databaseService.findEpisodeByTitleId(id)
     fun rating(id: Int): Rating? = databaseService.findRatingByTitleId(id)

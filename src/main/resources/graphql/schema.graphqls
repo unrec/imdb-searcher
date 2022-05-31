@@ -1,6 +1,7 @@
 type Query {
     movieSearch(name: String, director: String, writer: String, genre: String, minRating: Float, minVotes: Int, limit: Int): [Movie]
     movie(titleId: ID!): Basic
+    tvSeries(titleId: ID!): Series
     episode(titleId: ID!): Episode
     rating(titleId: ID!): Rating
     person(name: String!, profession: String): [Person]
@@ -33,6 +34,13 @@ type Basic {
     principals: [Principal]
     directors: [Person]
     writers: [Person]
+}
+
+type Series {
+    data: Basic
+    totalSeasons: Int
+    totalEpisodes: Int
+    totalRuntime: Int
 }
 
 type Episode {
