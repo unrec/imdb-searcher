@@ -41,6 +41,12 @@ type Series {
     totalSeasons: Int
     totalEpisodes: Int
     totalRuntime: Int
+    seasons: [Season]
+}
+
+type Season {
+    season: Int
+    totalEpisodes: Int
 }
 
 type Episode {

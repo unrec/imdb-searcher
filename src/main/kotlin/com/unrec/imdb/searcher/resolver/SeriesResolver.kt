@@ -17,4 +17,5 @@ class SeriesResolver(val databaseService: DatabaseService) : GraphQLResolver<Ser
     fun totalRuntime(series: Series) =
         databaseService.countTotalRuntimeForSeries(series.data!!.titleId)
 
+    fun seasons(series: Series) = databaseService.findSeasonsByTitleId(series.data!!.titleId)
 }

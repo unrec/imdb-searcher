@@ -31,6 +31,8 @@ class DatabaseService(
         return basicRepository.countTotalRuntimeForIds(episodesIds)
     }
 
+    fun findSeasonsByTitleId(titleId: Int) = episodeRepository.findSeasonsByTitleId(titleId)
+
     fun findSeriesByEpisode(episode: Episode) = basicRepository.findById(episode.parentId)
 
     fun findCrew(basic: Basic, column: Column<String>): List<Person> {
