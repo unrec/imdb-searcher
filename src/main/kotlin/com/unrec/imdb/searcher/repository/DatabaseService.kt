@@ -33,6 +33,9 @@ class DatabaseService(
 
     fun findSeasonsByTitleId(titleId: Int) = episodeRepository.findSeasonsByTitleId(titleId)
 
+    fun findEpisodes(parentId: Int, season: Short): List<Episode> =
+        episodeRepository.findEpisodes(parentId, season)
+
     fun findSeriesByEpisode(episode: Episode) = basicRepository.findById(episode.parentId)
 
     fun findCrew(basic: Basic, column: Column<String>): List<Person> {

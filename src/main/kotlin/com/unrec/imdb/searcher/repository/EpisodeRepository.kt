@@ -6,7 +6,10 @@ import com.unrec.imdb.searcher.db.EpisodeTable.parentId
 import com.unrec.imdb.searcher.db.EpisodeTable.season
 import com.unrec.imdb.searcher.db.EpisodeTable.titleId
 import com.unrec.imdb.searcher.db.toEpisode
+import com.unrec.imdb.searcher.model.Episode
 import com.unrec.imdb.searcher.model.Season
+import org.jetbrains.exposed.sql.SortOrder.ASC
+import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.max
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -39,10 +42,17 @@ class EpisodeRepository {
         EpisodeTable.slice(parentId, season, episode.max())
             .select { parentId eq id }
             .groupBy(season, parentId)
+            .orderBy(season, ASC)
             .map { row ->
                 Season(parentId = id,
                     season = row[season],
                     totalEpisodes = row[episode.max()])
             }
+    }
+
+    fun findEpisodes(id: Int, season: Short): List<Episode> = transaction {
+        EpisodeTable.select { (parentId eq id) and (EpisodeTable.season eq season) }
+            .orderBy(episode, ASC)
+            .map { it.toEpisode() }
     }
 }
